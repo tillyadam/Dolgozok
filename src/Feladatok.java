@@ -7,22 +7,32 @@ public class Feladatok {
 
     public Feladatok() {
         Scanner sc = new Scanner(System.in);
-        int valasztas=0;
+        int valasztas = 0;
         do {
             System.out.print("1: Összes dolgozó megjelenítése\n2: Új dolgozó felvétele \n3: Dolgozó keresése");
             System.out.println();
             valasztas = sc.nextInt();
-        } while (valasztas < 1 || valasztas >3);
-        switch (valasztas){
-            case 1: SelectAll("select * from dolgozok"); break;
-            //case 2: Lekerdezes("select 'id' from dolgozok"); break;
-            //case 3: Lekerdezes("select * from dolgozok"); break;
-            default: break;
+        } while (valasztas < 1 || valasztas > 3);
+        switch (valasztas) {
+            case 1:
+                Select("SELECT * FROM `dolgozok`;");
+                break;
+            case 2:
+                System.out.println("Ez még nincs kész");
+                break;
+            case 3:
+                System.out.print("Adja meg a dolgozó nevét: ");
+                String nev = sc.nextLine();
+                System.out.println();
+                Select("SELECT * FROM `dolgozok` WHERE `nev` LIKE '"+nev+"';");
+                break;
+            default:
+                break;
         }
 
     }
 
-    private void SelectAll(String statement) {
+    private void Select(String statement) {
         try {
             String url = "jdbc:mysql://localhost:3306/dolgozok";
             String user = "root";
