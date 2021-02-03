@@ -54,15 +54,16 @@ public class Feladatok {
         }
     }
 
-    private void Insert(String statement) {
+    private void Insert() {
         try {
             String url = "jdbc:mysql://localhost:3306/dolgozok";
             String user = "root";
             String password = "";
 
+            Class.forName("conn.mysql.jdbc.Driver");
+
             Connection kapcsolat = DriverManager.getConnection(url, user, password);
-            Statement allapot = kapcsolat.createStatement();
-            ResultSet rs = allapot.executeQuery(statement);
+            //PreparedStatement ps = kapcsolat.PreparedStatement("In");
             //System.out.println("Sikeres kapcsolat");
             Scanner sc = new Scanner(System.in);
             System.out.println("id: ");
