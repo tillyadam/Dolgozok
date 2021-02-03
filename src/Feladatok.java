@@ -24,7 +24,7 @@ public class Feladatok {
                 System.out.print("Adja meg a dolgozó nevét: ");
                 String nev = sc.nextLine();
                 System.out.println();
-                Select("SELECT * FROM `dolgozok` WHERE `nev` LIKE '"+nev+"';");
+                Select("SELECT * FROM `dolgozok` WHERE `nev` LIKE '" + nev + "';");
                 break;
             default:
                 break;
@@ -46,6 +46,36 @@ public class Feladatok {
                 System.out.println("id: " + rs.getString(1) + "\t nev: " + rs.getString(2) + "\t nem: " + rs.getString(3) +
                         "\t kor: " + rs.getString(4) + "\t fizetes: " + rs.getString(5));
             }
+            kapcsolat.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }
+
+    private void Insert(String statement) {
+        try {
+            String url = "jdbc:mysql://localhost:3306/dolgozok";
+            String user = "root";
+            String password = "";
+
+            Connection kapcsolat = DriverManager.getConnection(url, user, password);
+            Statement allapot = kapcsolat.createStatement();
+            ResultSet rs = allapot.executeQuery(statement);
+            //System.out.println("Sikeres kapcsolat");
+            Scanner sc = new Scanner(System.in);
+            System.out.println("id: ");
+            int id = sc.nextInt();
+            System.out.println("Név: ");
+            String nev = sc.nextLine();
+            System.out.println("Nem: ");
+            String nem = sc.nextLine();
+            System.out.println("Kor: ");
+            int kor = sc.nextInt();
+            System.out.println("Fizetés: ");
+            int fizetes = sc.nextInt();
+
             kapcsolat.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
